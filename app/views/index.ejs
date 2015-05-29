@@ -8,15 +8,33 @@
     <style>
         html, body { height: 100%; }
         main { height: 100%; }
-        #map-wrap { position: fixed; top: 50px; left: 0; right:0; bottom:0; }
+        #map-wrap { position: fixed; top: 0; left: 0; right:0; bottom:0; }
         #map-canvas { width:100%; height:100%; }
         #map-info { position: absolute; right: 0; top: 0; width: 300px; }
+        a:focus { outline: none !important; }
+        .navbar-inverse { opacity: .9; }
+        @media (min-width: 768px) {
+            .navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
+                margin-left: 0;
+                margin-right: 30px;
+            }
+        }
     </style>
     <script src="/lib/jquery/dist/jquery.js"></script>
     <script src="/lib/bootstrap/dist/js/bootstrap.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key="></script>
     <script>
+        // Bootstrap
+        $(function(){
+            $('.dropdown-menu').on('click', 'li a', function(){
+                var span = $(this).parents('.dropdown').find('.dropdown-toggle').find('.txt');
+                var text = span.text().split(' -')[0] || '';
+                span.text(text + ' - ' + $(this).text());
+            });
+        });
 
+
+        // Google Map
         function initialize() {
             var mapOptions = {
                 center: {lat: 35.88634, lng: 128.6284071},
@@ -25,6 +43,7 @@
             var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
         };
         google.maps.event.addDomListener(window, 'load', initialize);
+
     </script>
 </head>
 <body>
@@ -35,9 +54,9 @@
     <div class="container-fluid">
         <a class="navbar-brand" href="#">OdeE</a>
         <ul class="nav navbar-nav">
-            <li class="dropdown">
+            <li class="dropdown active">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    배달음식 <span class="caret"></span>
+                    <span class="txt">배달음식 - 전체</span> <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu" role="menu">
                     <li><a href="#">전체</a></li>
@@ -55,10 +74,10 @@
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li>
-                <a href="#">로그인</a>
+                <a href="#modal-login" data-toggle="modal">로그인</a>
             </li>
             <li>
-                <a href="#">회원가입</a>
+                <a href="#modal-signon" data-toggle="modal">회원가입</a>
             </li>
         </ul>
     </div>
@@ -68,6 +87,43 @@
 
     </div>
 </main>
+
+<!-- login -->
+<div class="modal fade" id="modal-login">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">로그인</h4>
+            </div>
+            <div class="modal-body">
+                Modal body ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal">닫기</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- sign on -->
+<div class="modal fade" id="modal-signon">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">회원가입</h4>
+            </div>
+            <div class="modal-body">
+                Modal body ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal">닫기</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 </body>
 </html>
