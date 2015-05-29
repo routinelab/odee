@@ -1,4 +1,4 @@
 # OdeE
 
-OdeE Local Server Application
+OdeE Local Service Application.
 
