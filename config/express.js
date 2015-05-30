@@ -11,15 +11,15 @@ var config = require('./config'),
     session = require('express-session');
 
 // Define the Express configuration method
-module.exports = function () {
+module.exports = function() {
 
     // Create a new Express application instance
     var app = express();
 
     // Use the 'NODE_ENV' variable to activate the 'morgan' logger or 'compress' middleware
-    if (process.env.NODE_ENV === 'development') {
+    if(process.env.NODE_ENV === 'development') {
         app.use(morgan('dev'));
-    } else if (process.env.NODE_DNV === 'production') {
+    }else if(process.env.NODE_DNV === 'production') {
         app.use(compress());
     }
 
@@ -41,8 +41,9 @@ module.exports = function () {
     app.set('views', './app/views');
     app.set('view engine', 'ejs');
 
-    // Load the 'index' routing file
+    // Load the routing file
     require('../app/routes/index.server.routes')(app);
+    require('../app/routes/users.server.routes')(app);
 
     // Configure static file serving
     app.use(express.static('./public'));

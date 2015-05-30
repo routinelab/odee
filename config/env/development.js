@@ -3,5 +3,6 @@
 
 // Set the 'development' environment configuration object
 module.exports = {
+    mongo: 'mongodb://localhost/odee',
     sessionSecret: 'development'
 };

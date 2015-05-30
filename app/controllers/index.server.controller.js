@@ -2,10 +2,10 @@
 'use strict';
 
 // Create a new 'render' controller method
-exports.render = function (req, res) {
+exports.page = function(req, res) {
 
     // If the session's 'lastVisit' property is set, print it out in the console
-    if (req.session.lastVisit) {
+    if(req.session.lastVisit) {
         console.log(req.session.lastVisit);
     }
 
